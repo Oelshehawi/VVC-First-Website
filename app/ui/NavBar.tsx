@@ -1,23 +1,28 @@
 'use client';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { DragCloseDrawer } from './freeEstimate/EstimateDrawer';
 
 export const NavBar = () => {
-  return (
-    <section className='h-screen bg-neutral-950'>
-      <SimpleFloatingNav />
-    </section>
-  );
+  return <SimpleFloatingNav />;
 };
 
 const SimpleFloatingNav = () => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <nav className='z-50 fixed left-[50%] top-8 flex w-fit -translate-x-[50%] items-center gap-6 rounded-lg border-[1px] border-neutral-700 bg-neutral-900 p-2 text-sm text-neutral-500'>
-      <Logo />
-      <NavLink link='/'>Home</NavLink>
-      <NavLink link='/services'>Services</NavLink>
-      <NavLink link='/clients'>Our Clients</NavLink>
-      <FreeEstimateButton />
-    </nav>
+    <>
+      <DragCloseDrawer open={open} setOpen={setOpen}>
+        <div className='mx-auto max-w-2xl space-y-4 text-neutral-400'></div>
+      </DragCloseDrawer>
+      <nav className='z-50 fixed left-[50%] top-8 flex w-fit -translate-x-[50%] items-center gap-6 rounded-lg border-[1px] border-neutral-700 bg-neutral-900 p-2 text-sm text-neutral-500'>
+        <Logo />
+        <NavLink link='/'>Home</NavLink>
+        <NavLink link='/services'>Services</NavLink>
+        <NavLink link='/clients'>Our Clients</NavLink>
+        <FreeEstimateButton onClick={() => setOpen(true)} />
+      </nav>
+    </>
   );
 };
 
@@ -47,7 +52,13 @@ const Logo = () => {
   );
 };
 
-const NavLink = ({ children, link }: { children: React.ReactNode, link:string }) => {
+const NavLink = ({
+  children,
+  link,
+}: {
+  children: React.ReactNode;
+  link: string;
+}) => {
   return (
     <a href={link} rel='nofollow' className='block overflow-hidden'>
       <motion.div
@@ -58,14 +69,17 @@ const NavLink = ({ children, link }: { children: React.ReactNode, link:string })
         <span className='flex h-[20px] items-center'>{children}</span>
         <span className='flex h-[20px] items-center text-neutral-50'>
           {children}
-       
         </span>
       </motion.div>
     </a>
   );
 };
 
-const FreeEstimateButton = () => {
+interface FreeEstimateButtonProps {
+  onClick: () => void;
+}
+
+const FreeEstimateButton = ({ onClick }: FreeEstimateButtonProps) => {
   return (
     <button
       className={`
@@ -79,10 +93,10 @@ const FreeEstimateButton = () => {
           before:rounded-[100%] before:bg-neutral-50
           before:transition-transform before:duration-1000
           before:content-[""]
-  
           hover:scale-105 hover:border-neutral-50 hover:text-neutral-900
           hover:before:translate-y-[0%]
           active:scale-100`}
+      onClick={onClick}
     >
       Get Free Estimate
     </button>

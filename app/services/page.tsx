@@ -1,7 +1,9 @@
+'use client'
+import Process from "../ui/services/Process"
 
 const services = () => {
   return (
-    <div>services</div>
+    <Process />
   )
 }
 

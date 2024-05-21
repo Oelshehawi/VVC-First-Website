@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={inter.className}>
         <NavBar />
-        <div className='min-h-[90vh] rounded shadow-lg flex-grow'>
+        <div className='min-h-[90vh] rounded shadow-lg flex-grow md:p-20'>
           {children}
         </div>
       </body>

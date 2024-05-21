@@ -5,8 +5,7 @@
 body {
   background-color: rgb(1, 1, 22);
   padding: 30px;
-  display: flex;
-  justify-content: center;
+
 }
 
 @layer utilities {
