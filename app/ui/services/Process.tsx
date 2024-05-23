@@ -2,10 +2,17 @@
 import { motion, useInView } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import WetPaintButton from './WetPaintButton';
+import { DragCloseDrawer } from '../freeEstimate/EstimateDrawer';
+import InspectionSchedule from './InspectionSchedule';
 
 const Process = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <>
+      <DragCloseDrawer open={open} setOpen={setOpen}>
+        <div className='mx-auto max-w-2xl space-y-4 text-neutral-400'></div>
+      </DragCloseDrawer>
       <div className='flex h-48 flex-col items-center justify-center bg-slate-900'>
         <span className='font-semibold uppercase text-white'>
           Our Services:
@@ -13,7 +20,7 @@ const Process = () => {
       </div>
       <SwapColumnFeatures />
       <div className='flex h-48 items-center justify-center bg-slate-900'>
-        <WetPaintButton />
+        <WetPaintButton onClick={() => setOpen(true)} />
       </div>
     </>
   );
@@ -45,7 +52,7 @@ const SlidingFeatureDisplay = ({ featureInView }: { featureInView: any }) => {
         justifyContent:
           featureInView.contentPosition === 'l' ? 'flex-end' : 'flex-start',
       }}
-      className='pointer-events-none sticky top-0 z-10 hidden h-[100vh] w-full items-center justify-center md:flex'
+      className='pointer-events-none sticky top-0 z-10 hidden h-[100vh] w-full items-center justify-center md:flex '
     >
       <motion.div
         layout
@@ -54,7 +61,7 @@ const SlidingFeatureDisplay = ({ featureInView }: { featureInView: any }) => {
           stiffness: 400,
           damping: 25,
         }}
-        className='h-fit w-3/5 rounded-xl p-8'
+        className='h-fit w-3/5 rounded-xl p-8 '
       >
         <ExampleFeature featureInView={featureInView} />
       </motion.div>
@@ -118,7 +125,7 @@ const ExampleFeature = ({ featureInView }: { featureInView: any }) => {
   return (
     <div className='relative h-[60vh] w-full rounded-xl bg-slate-800 shadow-xl'>
       <div className='flex w-full gap-1.5 rounded-t-xl bg-slate-900 p-3'></div>
-      <div className='absolute inset-0 p-10'>
+      <div className='absolute inset-0 p-10 overflow-scroll'>
         <featureInView.Image />
       </div>
     </div>
@@ -189,15 +196,6 @@ const features = [
     description:
       'Regular inspection and cleaning of your kitchen exhaust system are crucial for maintaining safety and compliance with NFPA 96 standards. The frequency of these inspections depends on the type and volume of cooking operations. High-volume and solid fuel cooking operations require more frequent inspections to prevent grease buildup and reduce fire hazards.',
     contentPosition: 'l',
-    Image: () => (
-      <motion.img
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        src='/table.png'
-        alt='NFPA 96 Exhaust System Inspection Schedule'
-        className='object-fit w-full h-full rounded-xl'
-      />
-    ),
+    Image: InspectionSchedule,
   },
 ];

@@ -15,7 +15,7 @@ const SimpleFloatingNav = () => {
       <DragCloseDrawer open={open} setOpen={setOpen}>
         <div className='mx-auto max-w-2xl space-y-4 text-neutral-400'></div>
       </DragCloseDrawer>
-      <nav className='z-50 fixed left-[50%] top-8 flex w-fit -translate-x-[50%] items-center gap-6 rounded-lg border-[1px] border-neutral-700 bg-neutral-900 p-2 text-sm text-neutral-500'>
+      <nav className='z-50 fixed left-[50%] top-8 flex md:w-fit -translate-x-[50%] items-center gap-6 rounded-lg border-[1px] border-neutral-700 bg-neutral-900 p-2 text-sm text-neutral-500'>
         <Logo />
         <NavLink link='/'>Home</NavLink>
         <NavLink link='/services'>Services</NavLink>
@@ -62,12 +62,12 @@ const NavLink = ({
   return (
     <a href={link} rel='nofollow' className='block overflow-hidden'>
       <motion.div
-        whileHover={{ y: -20 }}
+        whileHover={{ y: -50 }}
         transition={{ ease: 'backInOut', duration: 0.5 }}
-        className='h-[20px]'
+        className='h-[50px]'
       >
-        <span className='flex h-[20px] items-center'>{children}</span>
-        <span className='flex h-[20px] items-center text-neutral-50'>
+        <span className='flex h-[50px] items-center'>{children}</span>
+        <span className='flex h-[50px] items-center text-neutral-50'>
           {children}
         </span>
       </motion.div>

@@ -5,6 +5,7 @@ import {
   useAnimate,
   motion,
 } from "framer-motion";
+import ContactForm  from "./contactForm";
 
 export const DragCloseDrawer = ({ open, setOpen, children }: { open: boolean, setOpen: (open: boolean) => void, children: React.ReactNode }) => {
   const [scope, animate] = useAnimate();
@@ -75,7 +76,9 @@ export const DragCloseDrawer = ({ open, setOpen, children }: { open: boolean, se
             </div>
             <div className="relative z-0 h-full overflow-y-scroll p-4 pt-12">
               {children}
-              
+              <div>
+                <ContactForm /> 
+              </div>
             </div>
           </motion.div>
         </motion.div>

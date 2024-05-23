@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
-
-const WetPaintButton = () => {
+interface ButtonProps {
+  onClick: () => void;
+}
+const WetPaintButton = ({ onClick }: ButtonProps) => {
   return (
-    <button className="group relative rounded bg-violet-500 px-4 py-2.5 font-semibold text-white transition-colors hover:bg-violet-600">
+    <button className="group relative rounded bg-violet-500 px-4 py-2.5 font-semibold text-white transition-colors hover:bg-violet-600" onClick={onClick}>
       Get A Free Estimate!
       <Drip left="10%" height={24} delay={0.5} />
       <Drip left="30%" height={20} delay={3} />

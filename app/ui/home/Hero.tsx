@@ -2,18 +2,22 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiArrowRight } from 'react-icons/fi';
 import { twMerge } from 'tailwind-merge';
+interface ButtonProps {
+  onClick: () => void;
+}
 
-export const DarkGridHero = () => {
+
+export const DarkGridHero = ({ onClick }: ButtonProps) => {
   return (
     <section className='relative overflow-hidden rounded-t bg-zinc-950 '>
-      <Content />
+      <Content onClick={onClick}/>
       <Beams />
       <GradientGrid />
     </section>
   );
 };
 
-const Content = () => {
+const Content = ({ onClick }: ButtonProps) => {
   return (
     <div className='relative z-20 mx-auto flex max-w-6xl flex-col items-center justify-center px-4 py-24 md:px-8 md:py-36'>
       <motion.div
@@ -88,7 +92,7 @@ const Content = () => {
         }}
         className='flex flex-col items-center gap-6 sm:flex-row'
       >
-        <SplashButton className='flex items-center gap-2'>
+        <SplashButton onClick={onClick} className='flex items-center gap-2'>
           Free Estimate
           <FiArrowRight />
         </SplashButton>
@@ -109,10 +113,12 @@ const GlowingChip = ({ children }: { children: React.ReactNode }) => {
 const SplashButton = ({
   children,
   className,
+  onClick,
   ...rest
 }: {
   children: React.ReactNode;
   className: string;
+  onClick: () => void;
 }) => {
   return (
     <button
@@ -121,6 +127,7 @@ const SplashButton = ({
         className
       )}
       {...rest}
+      onClick={onClick}
     >
       {children}
     </button>
