@@ -1,5 +1,5 @@
 'use server';
-import postmark from 'postmark';
+var postmark = require("postmark");
 
 export const sendEmail = async (formData: FormData) => {
   const name = formData.get('name');
